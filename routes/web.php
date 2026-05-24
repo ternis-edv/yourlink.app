@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::livewire('/dashboard', 'pages::dashboard')->name('dashboard');
     Route::livewire('/links', 'pages::links::index')->name('links.index');
     Route::livewire('/links/{link}/edit', 'pages::links::edit')->name('links.edit');
+    Route::livewire('/links/{link}/analytics', 'pages::links::analytics')->name('links.analytics');
     Route::livewire('/api-tokens', 'pages::api-tokens')->name('api-tokens');
 
     Route::post('/logout', function () {

@@ -107,6 +107,7 @@ new #[Layout('components.layouts.dashboard')] #[Title('My Links')] class extends
                             </td>
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                 <div class="flex justify-end gap-3">
+                                    <a href="{{ route('links.analytics', $link) }}" class="text-yourlink-600 hover:text-yourlink-900" wire:navigate>{{ __('Analytics') }}</a>
                                     <a href="{{ route('links.edit', $link) }}" class="text-blue-600 hover:text-blue-900" wire:navigate>{{ __('Edit') }}</a>
                                     <button wire:click="deleteLink('{{ $link->id }}')" wire:confirm="{{ __('Are you sure you want to delete this link?') }}" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
                                 </div>
