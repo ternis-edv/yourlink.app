@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Domain;
 use App\Models\Link;
 use App\Models\LinkClick;
 use App\Models\User;
@@ -20,11 +21,20 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@yourlink.app',
         ]);
 
+        // Add a custom domain for admin
+        Domain::factory()->create([
+            'user_id' => $user->id,
+            'host' => 'links.ternis-edv.de',
+        ]);
+
+        // Create an API token for admin
+        $user->createToken('Desktop App');
+
         // Create some links for the admin user
-        Link::factory(5)->create([
+        Link::factory(10)->create([
             'user_id' => $user->id,
         ])->each(function (Link $link) {
-            LinkClick::factory(rand(5, 20))->create([
+            LinkClick::factory(rand(5, 50))->create([
                 'link_id' => $link->id,
             ]);
         });
@@ -38,10 +48,10 @@ class DatabaseSeeder extends Seeder
 
         // Create some random users with links
         User::factory(5)->create()->each(function (User $u) {
-            Link::factory(rand(1, 3))->create([
+            Link::factory(rand(3, 8))->create([
                 'user_id' => $u->id,
             ])->each(function (Link $link) {
-                LinkClick::factory(rand(1, 5))->create([
+                LinkClick::factory(rand(1, 15))->create([
                     'link_id' => $link->id,
                 ]);
             });

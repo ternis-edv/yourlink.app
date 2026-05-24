@@ -21,6 +21,7 @@ class LinkFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'domain_id' => null,
             'original_url' => $this->faker->url(),
             'hash' => Str::random(7),
             'title' => $this->faker->sentence(),

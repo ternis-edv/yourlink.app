@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
 
@@ -20,7 +21,7 @@ use Spatie\Activitylog\Support\LogOptions;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, HasUlids, LogsActivity, Notifiable;
+    use HasApiTokens, HasFactory, HasUlids, LogsActivity, Notifiable;
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -47,6 +48,11 @@ class User extends Authenticatable
     public function links(): HasMany
     {
         return $this->hasMany(Link::class);
+    }
+
+    public function domains(): HasMany
+    {
+        return $this->hasMany(Domain::class);
     }
 
     /**

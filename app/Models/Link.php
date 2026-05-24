@@ -50,6 +50,11 @@ class Link extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function domain(): BelongsTo
+    {
+        return $this->belongsTo(Domain::class);
+    }
+
     public function clicks(): HasMany
     {
         return $this->hasMany(LinkClick::class);
